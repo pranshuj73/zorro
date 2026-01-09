@@ -107,11 +107,18 @@ export function CTASection() {
                       render={({ field }) => (
                         <FormItem>
                           <FormControl>
-                            <Input
-                              placeholder="Name"
-                              {...field}
-                              className="bg-neutral-900/50 border-neutral-800 text-white placeholder:text-neutral-600 focus-visible:ring-white/20 h-12"
-                            />
+                            <div className="relative group">
+                              <Input
+                                placeholder="Name"
+                                {...field}
+                                className="bg-neutral-900/50 border-neutral-800 text-white placeholder:text-neutral-600 focus-visible:ring-0 focus-visible:border-neutral-700 h-12 transition-colors"
+                              />
+                              {/* Corner Accents */}
+                              <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
+                              <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-white opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
+                              <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-white opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
+                              <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
+                            </div>
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -123,11 +130,18 @@ export function CTASection() {
                       render={({ field }) => (
                         <FormItem>
                           <FormControl>
-                            <Input
-                              placeholder="Email"
-                              {...field}
-                              className="bg-neutral-900/50 border-neutral-800 text-white placeholder:text-neutral-600 focus-visible:ring-white/20 h-12"
-                            />
+                            <div className="relative group">
+                              <Input
+                                placeholder="Email"
+                                {...field}
+                                className="bg-neutral-900/50 border-neutral-800 text-white placeholder:text-neutral-600 focus-visible:ring-0 focus-visible:border-neutral-700 h-12 transition-colors"
+                              />
+                              {/* Corner Accents */}
+                              <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
+                              <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-white opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
+                              <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-white opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
+                              <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
+                            </div>
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -139,11 +153,18 @@ export function CTASection() {
                       render={({ field }) => (
                         <FormItem>
                           <FormControl>
-                            <Textarea
-                              placeholder="Project Brief (What are we building?)"
-                              {...field}
-                              className="bg-neutral-900/50 border-neutral-800 text-white placeholder:text-neutral-600 focus-visible:ring-white/20 min-h-[120px] resize-none"
-                            />
+                            <div className="relative group">
+                              <Textarea
+                                placeholder="Project Brief (What are we building?)"
+                                {...field}
+                                className="bg-neutral-900/50 border-neutral-800 text-white placeholder:text-neutral-600 focus-visible:ring-0 focus-visible:border-neutral-700 min-h-[120px] resize-none transition-colors"
+                              />
+                              {/* Corner Accents */}
+                              <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
+                              <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-white opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
+                              <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-white opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
+                              <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white opacity-0 group-focus-within:opacity-100 transition-opacity duration-300" />
+                            </div>
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -157,7 +178,7 @@ export function CTASection() {
                       {isSubmitting ? (
                         <Loader2 className="h-4 w-4 animate-spin" />
                       ) : (
-                        "Initiate Sequence"
+                        "Engage"
                       )}
                     </Button>
                   </form>

@@ -13,6 +13,7 @@
 - [x] Create `references/WORKLOG.md` (Done)
 - [x] Define Brand Interpretation (Done)
 - [x] Perform Reference Calibration (Done)
+- [x] Refine Hero Visuals (Done)
 
 ## Brand Interpretation (Mandatory Thinking Work)
 **Adjectives:**
@@ -54,6 +55,17 @@ Zorro is the silent engine that turns intent into reality. It is not a consultan
     - Minimal motion (only what is necessary).
     - No illustrations (unless abstract/geometric).
 - **Calibration**: We will avoid the "SaaS gradient" look. We will lean into stark contrast. Black is `#000000` or `#030303`, not `#1a1a1a`.
+
+## Hero Visual Refinements
+- **Red Line Animation**: Iterated on the "pulse" concept to align with the "Surgical" and "Accelerant" brand attributes.
+    - **Evolution**:
+        1.  Simple pulsing line (too generic).
+        2.  Traveling beam on exponential curve (better direction).
+        3.  Adjusted curve to be steeper/more exponential (`Q 1000 300 1440 0`).
+        4.  Experimented with "hot core" (white center) but reverted to pure red for cleaner look.
+        5.  **Final State**: Removed the sharp pulse line entirely, keeping only the "glow" path with a thicker stroke (14px). This creates a softer, more ethereal "energy flow" effect rather than a hard laser beam.
+    - **Technical**: Used `framer-motion` with `strokeDasharray` and `strokeDashoffset` for the traveling effect.
+    - **Clipping Fix**: Set `overflow-visible` on the SVG to ensure the blur effect isn't cut off by the container.
 
 ## Open Questions
 - None at this stage.
