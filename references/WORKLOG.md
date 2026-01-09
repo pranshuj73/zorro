@@ -7,6 +7,7 @@
 - Complete the website (CTA & Footer).
 - Expand content depth (Advantage & Services).
 - Redesign CTA with embedded form.
+- Refine Hero (Copy + Red Line) & Add Mission Section.
 
 ## Active Todos
 - [x] Create `references/WORKLOG.md` (Done)

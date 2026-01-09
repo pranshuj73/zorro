@@ -10,7 +10,7 @@ export function Hero() {
       {/* Background Elements - Subtle/Abstract */}
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-neutral-900/20 via-background to-background" />
 
-      <div className="max-w-4xl space-y-8">
+      <div className="max-w-4xl space-y-8 relative z-10">
         <div className="space-y-2">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -30,8 +30,7 @@ export function Hero() {
           className="max-w-xl space-y-8"
         >
           <p className="text-lg text-neutral-400 md:text-xl leading-relaxed">
-            Most teams drown in process. We ship. <br />
-            Zorro is the surgical intervention for founders who need outcome, not activity.
+            Most teams drown in process. We ship.
           </p>
 
           <div className="flex flex-wrap gap-4">
@@ -46,19 +45,46 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Grid/Technical decorative element */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1 }}
-        className="absolute bottom-12 right-12 hidden md:block"
-      >
-        <div className="flex flex-col items-end gap-1 text-xs font-mono text-neutral-800">
-          <span>SYS.STATUS: ONLINE</span>
-          <span>LATENCY: 12ms</span>
-          <span>VER: 2.0.4</span>
-        </div>
-      </motion.div>
+      {/* Pulsing Red Line */}
+      <div className="absolute bottom-0 right-0 w-full h-[40vh] pointer-events-none">
+        <svg
+          viewBox="0 0 1440 300"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-full absolute bottom-0 right-0 overflow-visible"
+          preserveAspectRatio="none"
+        >
+          {/* Base Track */}
+          <path
+            d="M0 300 Q 1000 300 1440 0"
+            stroke="#7f1d1d" // Red-900
+            strokeWidth="2"
+            fill="none"
+            opacity="0.2"
+          />
+
+
+          {/* Traveling Glow */}
+          <motion.path
+            d="M0 300 Q 1000 300 1440 0"
+            stroke="#ff4444" // Bright Red
+            strokeWidth="14"
+            strokeLinecap="round"
+            fill="none"
+            initial={{ strokeDasharray: "150 1500", strokeDashoffset: 0 }}
+            animate={{ strokeDashoffset: -1650 }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="blur-2xl"
+            opacity="0.8"
+          />
+        </svg>
+      </div>
+
+
     </section>
   );
 }
