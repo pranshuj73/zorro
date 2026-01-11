@@ -24,13 +24,11 @@ export function ProblemSection() {
             </h2>
             <div className="space-y-6 text-lg text-neutral-400 md:text-xl">
               <p>
-                Most MVPs fail not because of bad ideas, but because of indecision.
-                Teams get stuck in "figuring it out" loops, over-engineering infrastructure
-                before they have a user.
+                Most MVPs fail due to indecision, overengineering, or slow execution.
+                Teams underestimate the cost of figuring it out themselves.
               </p>
               <p>
-                We don't do that. We treat speed as a structural constraint.
-                If it doesn't move the needle, it doesn't get built.
+                Speed is structural, not effort-based.
               </p>
             </div>
           </motion.div>

@@ -6,33 +6,18 @@ import { Zap, Layers, Target } from "lucide-react";
 const advantages = [
   {
     icon: Zap,
-    title: "Velocity",
-    description: "Speed is not just about typing faster. It's about removing friction from every layer of the stack.",
-    points: [
-      "Pre-calibrated Next.js 15+ stack with zero config time.",
-      "Automated CI/CD pipelines that deploy on git push.",
-      "Immediate decision-making protocols to bypass bike-shedding."
-    ]
+    title: "Speed",
+    description: "AI used pragmatically to accelerate execution. Systemized workflows that remove friction. We build faster because we leverage what works.",
   },
   {
     icon: Layers,
     title: "Systems",
-    description: "We don't reinvent the wheel. We use a battle-tested architecture that scales from day one.",
-    points: [
-      "Component-driven development using a customized Shadcn/UI system.",
-      "Type-safe database ORM and API layers (tRPC/Server Actions).",
-      "Built-in authentication, payments, and analytics integration."
-    ]
+    description: "Taste-driven decision-making. Aggressive reduction of ambiguity. Battle-tested architecture.",
   },
   {
     icon: Target,
     title: "Precision",
-    description: "Most projects fail because they build too much. We build exactly what is needed to validate.",
-    points: [
-      "Ruthless scope cutting to focus on the core value proposition.",
-      "Feature-flagging for safe, incremental rollouts.",
-      "User-centric feedback loops integrated directly into the product."
-    ]
+    description: "Reduced decision surface. Build exactly what validates. Nothing more.",
   }
 ];
 
@@ -42,7 +27,7 @@ export function AdvantageSection() {
       <div className="container mx-auto px-6 md:px-12">
         <div className="mb-16 md:mb-24">
           <h2 className="text-sm font-mono text-neutral-500 uppercase tracking-widest">
-            // The Zorro Advantage
+            // Advantage
           </h2>
         </div>
 
@@ -65,15 +50,6 @@ export function AdvantageSection() {
                 <p className="text-lg text-neutral-400 leading-relaxed">
                   {item.description}
                 </p>
-
-                <ul className="space-y-3 pt-4">
-                  {item.points.map((point, i) => (
-                    <li key={i} className="flex items-start gap-3 text-neutral-500">
-                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-neutral-700 group-hover:bg-white transition-colors" />
-                      <span className="text-sm leading-relaxed">{point}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
             </motion.div>
           ))}

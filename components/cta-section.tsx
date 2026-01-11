@@ -88,8 +88,8 @@ export function CTASection() {
                   <div className="h-12 w-12 rounded-full bg-white text-black flex items-center justify-center">
                     <ArrowRight className="h-6 w-6" />
                   </div>
-                  <h3 className="text-2xl font-medium text-white">Transmission Received</h3>
-                  <p className="text-neutral-400">We will be in touch shortly.</p>
+                  <h3 className="text-2xl font-medium text-white">Received</h3>
+                  <p className="text-neutral-400">We'll be in touch.</p>
                   <Button
                     variant="outline"
                     onClick={() => setIsSuccess(false)}
@@ -155,7 +155,7 @@ export function CTASection() {
                           <FormControl>
                             <div className="relative group">
                               <Textarea
-                                placeholder="Project Brief (What are we building?)"
+                                placeholder="Project Brief"
                                 {...field}
                                 className="bg-neutral-900/50 border-neutral-800 text-white placeholder:text-neutral-600 focus-visible:ring-0 focus-visible:border-neutral-700 min-h-[120px] resize-none transition-colors"
                               />

@@ -6,17 +6,17 @@ const services = [
   {
     id: "01",
     title: "MVP Execution",
-    description: "From zero to deployed product in weeks. We handle design, development, and infrastructure. You focus on the market."
+    description: "Zero to deployed product. Design, development, infrastructure. You focus on the market."
   },
   {
     id: "02",
     title: "Product Rescue",
-    description: "For projects stuck in development hell. We audit, refactor, and ship the blocked release to get you back on track."
+    description: "Projects stuck in development. Audit, refactor, ship the blocked release."
   },
   {
     id: "03",
     title: "Technical Strategy",
-    description: "Fractional CTO services for non-technical founders. We define the roadmap, hire the team, and set the standards."
+    description: "Fractional CTO services. Define roadmap, hire team, set standards."
   }
 ];
 

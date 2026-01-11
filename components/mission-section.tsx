@@ -14,7 +14,7 @@ export function MissionSection() {
           className="max-w-5xl mx-auto text-center"
         >
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight">
-            Zorro is the <span className="text-red-600">surgical intervention</span> for founders who need outcome, not activity.
+            Zorro is the <span className="text-red-600">surgical intervention</span> for founders who demand outcome, not activity.
           </h2>
         </motion.div>
       </div>

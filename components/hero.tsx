@@ -29,7 +29,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-xl space-y-8"
         >
-          <p className="text-lg text-neutral-400 md:text-xl leading-relaxed">
+          <p className="text-lg text-neutral-400 md:text-xl leading-relaxed max-w-2xl">
             Most teams drown in process. We ship.
           </p>
 
@@ -38,7 +38,7 @@ export function Hero() {
               href="/contact"
               className="group inline-flex items-center gap-2 bg-white px-6 py-3 text-sm font-medium text-black transition-transform hover:scale-105 active:scale-95"
             >
-              Engage Zorro
+              Get Started
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
