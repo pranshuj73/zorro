@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ConsoleSignature } from "@/components/console-signature";
 import { BackgroundGrid } from "@/components/background-grid";
+import { metadata } from "@/config/metadata";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,10 +14,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Zorro",
-  description: "Speed is a weapon.",
-};
+export { metadata };
 
 export default function RootLayout({
   children,

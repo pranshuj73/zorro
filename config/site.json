@@ -1,0 +1,23 @@
+{
+  "name": "Zorro",
+  "url": "https://zorro.works",
+  "description": "MVP builder and product consultancy for founders who ship. AI-accelerated execution. Systemized workflows. We build faster because we leverage what works.",
+  "shortDescription": "MVP builder and product consultancy for founders who ship. AI-accelerated execution. Systemized workflows.",
+  "title": "Zorro | MVP Builder & Product Consultancy",
+  "keywords": [
+    "MVP builder",
+    "product consultancy",
+    "startup development",
+    "AI-accelerated development",
+    "rapid MVP",
+    "product development",
+    "founder consultancy",
+    "technical strategy",
+    "product rescue",
+    "fractional CTO"
+  ],
+  "twitter": {
+    "handle": "@prnshtwt"
+  },
+  "ogImage": "/og-image.png"
+}
