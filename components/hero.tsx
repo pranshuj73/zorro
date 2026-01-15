@@ -53,44 +53,6 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Pulsing Red Line */}
-      <div className="absolute bottom-0 right-0 w-full h-[40vh] pointer-events-none">
-        <svg
-          viewBox="0 0 1440 300"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full absolute bottom-0 right-0 overflow-visible"
-          preserveAspectRatio="none"
-        >
-          {/* Base Track */}
-          <path
-            d="M0 300 Q 1000 300 1440 0"
-            stroke="#7f1d1d" // Red-900
-            strokeWidth="2"
-            fill="none"
-            opacity="0.2"
-          />
-
-
-          {/* Traveling Glow */}
-          <motion.path
-            d="M0 300 Q 1000 300 1440 0"
-            stroke="#ff4444" // Bright Red
-            strokeWidth="14"
-            strokeLinecap="round"
-            fill="none"
-            initial={{ strokeDasharray: "150 1500", strokeDashoffset: 0 }}
-            animate={{ strokeDashoffset: -1650 }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            className="blur-2xl"
-            opacity="0.8"
-          />
-        </svg>
-      </div>
 
 
     </section>
