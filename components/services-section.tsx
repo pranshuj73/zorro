@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import * as m from "motion/react-m";
 
 const services = [
   {
@@ -26,13 +26,13 @@ export function ServicesSection() {
       <div className="container mx-auto px-6 md:px-12">
         <div className="mb-16 md:mb-24">
           <h2 className="text-sm font-mono text-neutral-500 uppercase tracking-widest">
-            // Capabilities
+            {"// Capabilities"}
           </h2>
         </div>
 
         <div className="space-y-8">
           {services.map((service, index) => (
-            <motion.div
+            <m.div
               key={service.id}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -49,7 +49,7 @@ export function ServicesSection() {
               <p className="text-lg text-neutral-500 md:text-xl leading-relaxed max-w-2xl">
                 {service.description}
               </p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

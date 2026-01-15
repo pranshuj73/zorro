@@ -2,7 +2,7 @@
 
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { motion } from "motion/react";
+import * as m from "motion/react-m";
 import { HeroVisual } from "./hero-visual";
 
 export function Hero() {
@@ -14,7 +14,7 @@ export function Hero() {
       <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10 mx-auto w-full">
         <div className="space-y-8">
           <div className="space-y-2">
-            <motion.h1
+            <m.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -22,10 +22,10 @@ export function Hero() {
             >
               Speed is <br className="hidden md:block" />
               <span className="text-neutral-500">a weapon.</span>
-            </motion.h1>
+            </m.h1>
           </div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
@@ -44,7 +44,7 @@ export function Hero() {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Hero Visual */}

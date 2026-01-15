@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import * as m from "motion/react-m";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -55,7 +55,7 @@ export function CTASection() {
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-24 items-center">
 
           {/* Left: Copy */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -67,12 +67,12 @@ export function CTASection() {
               ship?
             </h2>
             <p className="text-xl text-neutral-400 max-w-md leading-relaxed">
-              Stop planning. Start building. Tell us what you need, and we'll tell you how fast it can be done.
+              Stop planning. Start building. Tell us what you need, and we&apos;ll tell you how fast it can be done.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* Right: Form */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -89,7 +89,7 @@ export function CTASection() {
                     <ArrowRight className="h-6 w-6" />
                   </div>
                   <h3 className="text-2xl font-medium text-white">Received</h3>
-                  <p className="text-neutral-400">We'll be in touch.</p>
+                  <p className="text-neutral-400">We&apos;ll be in touch.</p>
                   <Button
                     variant="outline"
                     onClick={() => setIsSuccess(false)}
@@ -185,7 +185,7 @@ export function CTASection() {
                 </Form>
               )}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

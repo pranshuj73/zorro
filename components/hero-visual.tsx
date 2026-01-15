@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import * as m from "motion/react-m";
 import { useEffect, useId, useMemo, useRef } from "react";
 
 export function HeroVisual() {
@@ -31,9 +31,7 @@ export function HeroVisual() {
     const minScale = 0.5;
     const midScale = 0.84;
     const scale = [maxScale, maxScale, minScale, minScale, midScale, midScale, maxScale];
-    const opacity = [0.85, 0.85, 0.25, 0.25, 0.6, 0.6, 0.85];
-
-    return { duration: total, times, scale, opacity };
+    return { duration: total, times, scale };
   }, []);
 
   useEffect(() => {
@@ -120,7 +118,7 @@ export function HeroVisual() {
       {/* ============================================================================
           LAYER 1: The "Atmosphere" - Optimization: Reduced blur intensity / layers
          ============================================================================ */}
-      <motion.div
+      <m.div
         className="absolute h-[500px] w-[500px] rounded-full bg-neutral-900/40"
         animate={{ opacity: [0.3, 0.5, 0.3] }}
         transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
@@ -426,7 +424,7 @@ export function HeroVisual() {
         <div className="h-4 w-4 bg-red-600 rounded-full shadow-[0_0_20px_rgba(239,68,68,1)]" />
 
         {/* Aiming Reticle */}
-        <motion.div
+        <m.div
           className="absolute h-16 w-16 border border-red-500/50 rounded-full"
           initial={{ scale: 1.08, opacity: 0.85 }}
           animate={{

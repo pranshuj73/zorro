@@ -3,6 +3,7 @@ import "./globals.css";
 import { ConsoleSignature } from "@/components/console-signature";
 import { BackgroundGrid } from "@/components/background-grid";
 import { metadata } from "@/config/metadata";
+import { MotionProvider } from "@/components/motion-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,9 +27,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground selection:bg-white selection:text-black`}
       >
-        {children}
-        <BackgroundGrid />
-        <ConsoleSignature />
+        <MotionProvider>
+          {children}
+          <BackgroundGrid />
+          <ConsoleSignature />
+        </MotionProvider>
       </body>
     </html>
   );

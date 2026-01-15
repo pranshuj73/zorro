@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import * as m from "motion/react-m";
 
 export function ProblemSection() {
   return (
@@ -11,7 +11,7 @@ export function ProblemSection() {
           <div className="hidden md:block" />
 
           {/* Right: The Truth */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -31,7 +31,7 @@ export function ProblemSection() {
                 Speed is structural, not effort-based.
               </p>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

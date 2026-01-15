@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import * as m from "motion/react-m";
 import { Zap, Layers, Target } from "lucide-react";
 
 const advantages = [
@@ -27,13 +27,13 @@ export function AdvantageSection() {
       <div className="container mx-auto px-6 md:px-12">
         <div className="mb-16 md:mb-24">
           <h2 className="text-sm font-mono text-neutral-500 uppercase tracking-widest">
-            // Advantage
+            {"// Advantage"}
           </h2>
         </div>
 
         <div className="grid gap-12 lg:grid-cols-3">
           {advantages.map((item, index) => (
-            <motion.div
+            <m.div
               key={item.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -51,7 +51,7 @@ export function AdvantageSection() {
                   {item.description}
                 </p>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>
