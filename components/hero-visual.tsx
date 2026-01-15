@@ -1,13 +1,15 @@
 "use client";
 
 import { motion } from "motion/react";
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef } from "react";
 
 export function HeroVisual() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const curveId = useId().replaceAll(":", "");
 
-  const [cursor, setCursor] = useState(() => ({ x: 0, y: 0 }));
+  // PERF: keep cursor updates out of React render loop (this component is SVG-heavy).
+  const cursorTextRef = useRef<HTMLDivElement | null>(null);
+  const cursorLastRef = useRef({ x: 0, y: 0 });
   const reticleCycle = useMemo(() => {
     // Mechanical cycle (long holds, quick transitions):
     // max hold 2.00s -> min hold 2.45s -> mid hold 3.00s -> back to max
@@ -52,7 +54,10 @@ export function HeroVisual() {
       const x = Math.round((px - 0.5) * 200);
       const y = Math.round((py - 0.5) * 200);
 
-      setCursor(prev => (prev.x === x && prev.y === y ? prev : { x, y }));
+      const last = cursorLastRef.current;
+      if (last.x === x && last.y === y) return;
+      cursorLastRef.current = { x, y };
+      if (cursorTextRef.current) cursorTextRef.current.textContent = `${x},${y}`;
     };
 
     const onMouseMove = (e: MouseEvent) => {
@@ -67,9 +72,6 @@ export function HeroVisual() {
       if (raf) window.cancelAnimationFrame(raf);
     };
   }, []);
-
-  const cursorX = cursor.x;
-  const cursorY = cursor.y;
 
   const ringTokens = useMemo(
     () => [
@@ -132,10 +134,10 @@ export function HeroVisual() {
         className="absolute h-[1400px] w-[1400px] opacity-35 text-neutral-400 animate-spin"
         style={{
           transformOrigin: "50% 50%",
+          willChange: "transform",
           animationDuration: "520s",
           animationTimingFunction: "linear",
           animationDirection: "reverse",
-          mixBlendMode: "screen",
         }}
       >
         {/* Second-outermost distant ring: dotted */}
@@ -183,10 +185,10 @@ export function HeroVisual() {
         className="absolute h-[1900px] w-[1900px] opacity-25 text-neutral-500 animate-spin"
         style={{
           transformOrigin: "50% 50%",
+          willChange: "transform",
           animationDuration: "780s",
           animationTimingFunction: "linear",
           animationDirection: "normal",
-          mixBlendMode: "screen",
         }}
       >
         <circle
@@ -214,6 +216,7 @@ export function HeroVisual() {
         className="absolute h-[800px] w-[800px] opacity-20 animate-spin"
         style={{
           transformOrigin: "50% 50%",
+          willChange: "transform",
           animationDuration: "180s",
           animationTimingFunction: "linear",
           animationDirection: "normal",
@@ -231,6 +234,7 @@ export function HeroVisual() {
         className="absolute h-[740px] w-[740px] opacity-20 text-neutral-600 animate-spin"
         style={{
           transformOrigin: "50% 50%",
+          willChange: "transform",
           animationDuration: "140s",
           animationTimingFunction: "linear",
           animationDirection: "reverse",
@@ -266,6 +270,7 @@ export function HeroVisual() {
         className="absolute h-[660px] w-[660px] opacity-20 text-neutral-600 animate-spin"
         style={{
           transformOrigin: "50% 50%",
+          willChange: "transform",
           animationDuration: "240s",
           animationTimingFunction: "linear",
           animationDirection: "alternate",
@@ -341,7 +346,12 @@ export function HeroVisual() {
          ============================================================================ */}
       <div
         className="absolute h-[550px] w-[550px] animate-spin"
-        style={{ animationDuration: "80s", animationTimingFunction: "linear", animationDirection: "alternate" }}
+        style={{
+          willChange: "transform",
+          animationDuration: "80s",
+          animationTimingFunction: "linear",
+          animationDirection: "alternate",
+        }}
       >
         <svg viewBox="-40 -40 630 630" className="w-full h-full overflow-visible" style={{ overflow: "visible" }}>
           <path
@@ -373,6 +383,7 @@ export function HeroVisual() {
         className="absolute h-[500px] w-[500px] opacity-25 text-neutral-700 animate-spin"
         style={{
           transformOrigin: "50% 50%",
+          willChange: "transform",
           animationDuration: "130s",
           animationTimingFunction: "linear",
           animationDirection: "normal",
@@ -389,7 +400,12 @@ export function HeroVisual() {
          ============================================================================ */}
       <div
         className="absolute h-[400px] w-[400px] animate-spin"
-        style={{ animationDuration: "70s", animationTimingFunction: "linear", animationDirection: "alternate-reverse" }}
+        style={{
+          willChange: "transform",
+          animationDuration: "70s",
+          animationTimingFunction: "linear",
+          animationDirection: "alternate-reverse",
+        }}
       >
         <svg viewBox="0 0 400 400" className="w-full h-full">
           <circle cx="200" cy="200" r="190" stroke="#ef4444" strokeWidth="1" strokeDasharray="100 250" strokeLinecap="round" fill="none" className="opacity-80 drop-shadow-[0_0_8px_rgba(239,68,68,0.6)]" />
@@ -434,8 +450,11 @@ export function HeroVisual() {
         />
 
         {/* Dynamic Data Readout */}
-        <div className="absolute top-18 font-mono text-[10px] text-red-500 tracking-widest opacity-80">
-          {cursorX},{cursorY}
+        <div
+          ref={cursorTextRef}
+          className="absolute top-18 font-mono text-[10px] text-red-500 tracking-widest opacity-80"
+        >
+          0,0
         </div>
 
         {/* Crosshairs */}
