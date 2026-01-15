@@ -11,6 +11,15 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
   publisher: siteConfig.name,
+  icons: {
+    icon: [
+      {
+        url: siteConfig.logo,
+        type: "image/svg+xml",
+      },
+    ],
+    shortcut: [siteConfig.logo],
+  },
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || siteConfig.url
   ),

@@ -19,5 +19,6 @@
   "twitter": {
     "handle": "@prnshtwt"
   },
+  "logo": "/logo.svg",
   "ogImage": "/og-image.png"
 }
