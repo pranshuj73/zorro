@@ -11,14 +11,24 @@ export function Hero() {
       {/* Background Elements - Subtle/Abstract */}
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-neutral-900/20 via-background to-background" />
 
-      <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10 mx-auto w-full">
-        <div className="space-y-8">
+      {/* Mobile hero visual (subtle, blurred, no cursor readout) */}
+      <div className="absolute inset-0 z-0 overflow-hidden lg:hidden">
+        <div 
+          className="absolute right-0 top-1/2 opacity-25 blur-[2px] md:scale-200"
+          style={{ transform: 'translateY(-50%) translateX(-50%)' }}
+        >
+            <HeroVisual showCursorReadout={false} />
+         </div>
+      </div>
+
+      <div className="grid lg:grid-cols-2 gap-12 items-center relative mx-auto w-full">
+        <div className="space-y-8 z-20">
           <div className="space-y-2">
             <m.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-5xl font-medium tracking-tighter text-white sm:text-7xl md:text-8xl lg:text-9xl"
+              className="text-5xl font-medium tracking-tighter text-white sm:text-6xl md:text-7xl lg:text-9xl text-nowrap"
             >
               Speed is <br className="hidden md:block" />
               <span className="text-neutral-500">a weapon.</span>
@@ -48,7 +58,7 @@ export function Hero() {
         </div>
 
         {/* Hero Visual */}
-        <div className="hidden lg:flex h-full w-full items-center justify-center min-h-[400px] lg:pl-24">
+        <div className="hidden lg:flex h-full w-full items-center justify-center min-h-[400px] lg:pl-24 z-10">
           <HeroVisual />
         </div>
       </div>

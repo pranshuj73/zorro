@@ -3,7 +3,11 @@
 import * as m from "motion/react-m";
 import { useEffect, useId, useMemo, useRef } from "react";
 
-export function HeroVisual() {
+type HeroVisualProps = {
+  showCursorReadout?: boolean;
+};
+
+export function HeroVisual({ showCursorReadout = true }: HeroVisualProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const curveId = useId().replaceAll(":", "");
 
@@ -35,6 +39,8 @@ export function HeroVisual() {
   }, []);
 
   useEffect(() => {
+    if (!showCursorReadout) return;
+
     const clamp01 = (n: number) => Math.max(0, Math.min(1, n));
 
     let raf = 0;
@@ -69,7 +75,7 @@ export function HeroVisual() {
       window.removeEventListener("mousemove", onMouseMove);
       if (raf) window.cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [showCursorReadout]);
 
   const ringTokens = useMemo(
     () => [
@@ -448,12 +454,14 @@ export function HeroVisual() {
         />
 
         {/* Dynamic Data Readout */}
-        <div
-          ref={cursorTextRef}
-          className="absolute top-18 font-mono text-[10px] text-red-500 tracking-widest opacity-80"
-        >
-          0,0
-        </div>
+        {showCursorReadout ? (
+          <div
+            ref={cursorTextRef}
+            className="absolute top-18 font-mono text-[10px] text-red-500 tracking-widest opacity-80"
+          >
+            0,0
+          </div>
+        ) : null}
 
         {/* Crosshairs */}
         <div className="absolute w-[300px] h-[1px] bg-neutral-800 opacity-50" />
