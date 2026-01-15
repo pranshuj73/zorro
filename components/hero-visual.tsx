@@ -8,6 +8,28 @@ export function HeroVisual() {
   const curveId = useId().replaceAll(":", "");
 
   const [cursor, setCursor] = useState(() => ({ x: 0, y: 0 }));
+  const reticleCycle = useMemo(() => {
+    // Mechanical cycle (long holds, quick transitions):
+    // 1.0 hold 2.00s -> 0.4 hold 2.45s -> 0.8 hold 3.00s -> back to 1.0
+    const hold1 = 2.0;
+    const hold2 = 2.45;
+    const hold3 = 3.0;
+    const ramp = 0.12; // quick actuator-like move between holds
+
+    const total = hold1 + ramp + hold2 + ramp + hold3 + ramp;
+
+    const t1 = hold1 / total;
+    const t2 = (hold1 + ramp) / total;
+    const t3 = (hold1 + ramp + hold2) / total;
+    const t4 = (hold1 + ramp + hold2 + ramp) / total;
+    const t5 = (hold1 + ramp + hold2 + ramp + hold3) / total;
+
+    const times = [0, t1, t2, t3, t4, t5, 1];
+    const scale = [1, 1, 0.4, 0.4, 0.8, 0.8, 1];
+    const opacity = [0.85, 0.85, 0.25, 0.25, 0.6, 0.6, 0.85];
+
+    return { duration: total, times, scale, opacity };
+  }, []);
 
   useEffect(() => {
     const clamp01 = (n: number) => Math.max(0, Math.min(1, n));
@@ -95,8 +117,8 @@ export function HeroVisual() {
           LAYER 1: The "Atmosphere" - Optimization: Reduced blur intensity / layers
          ============================================================================ */}
       <motion.div
-        className="absolute h-[500px] w-[500px] rounded-full bg-neutral-900/40 blur-3xl"
-        animate={{ opacity: [0.2, 0.4, 0.2] }}
+        className="absolute h-[500px] w-[500px] rounded-full bg-neutral-900/40"
+        animate={{ opacity: [0.3, 0.5, 0.3] }}
         transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
       />
 
@@ -308,12 +330,29 @@ export function HeroVisual() {
         {/* Aiming Reticle */}
         <motion.div
           className="absolute h-16 w-16 border border-red-500/50 rounded-full"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          initial={{ scale: 1, opacity: 0.85 }}
+          animate={{
+            scale: reticleCycle.scale,
+            // Keep brightness pulsing independently of the mechanical scale holds.
+            opacity: [0.5, 0.9, 0.7, 0, 0.7, 0.9, 0.5, 1],
+          }}
+          transition={{
+            scale: {
+              duration: reticleCycle.duration,
+              times: reticleCycle.times,
+              ease: "linear",
+              repeat: Infinity,
+            },
+            opacity: {
+              duration: 2.4,
+              ease: "easeInOut",
+              repeat: Infinity,
+            },
+          }}
         />
 
         {/* Dynamic Data Readout */}
-        <div className="absolute top-12 font-mono text-[10px] text-red-500 tracking-widest opacity-80">
+        <div className="absolute top-18 font-mono text-[10px] text-red-500 tracking-widest opacity-80">
           {cursorX},{cursorY}
         </div>
 
