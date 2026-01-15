@@ -46,12 +46,44 @@ export function HeroVisual() {
   const cursorX = cursor.x;
   const cursorY = cursor.y;
 
-  const ringText = useMemo(() => {
-    // Zorro is positional: capability, speed, inevitability. No fake telemetry.
-    const segment =
-      "SPEED IS STRUCTURAL // SYSTEMIZED EXECUTION // REDUCE AMBIGUITY // TASTE-DRIVEN DECISIONS // LEVERAGE // ";
-    return segment.repeat(8);
-  }, []);
+  const ringTokens = useMemo(
+    () => [
+      "SPEED IS STRUCTURAL",
+      "//",
+      "SYSTEMIZED EXECUTION",
+      "//",
+      "REDUCE AMBIGUITY",
+      "//",
+      "TASTE-DRIVEN DECISIONS",
+      "//",
+      "LEVERAGE",
+      "//",
+    ],
+    [],
+  );
+
+  const ringLayout = useMemo(() => {
+    // Approximate token widths using monospace character counts.
+    // We place tokens based on cumulative "weight" so the perceived gaps are consistent.
+    const gapWeight = 4; // controls spacing between tokens (in "chars")
+    const charScale = 1.2; // account for tracking + glyph rendering
+
+    const weights = ringTokens.map(t => Math.max(1, Math.round(t.length * charScale)));
+    const total = weights.reduce((a, b) => a + b, 0) + ringTokens.length * gapWeight;
+
+    let acc = 0;
+    return ringTokens.map((token, i) => {
+      const w = weights[i]!;
+
+      // Center each token on its point along the circle (true visual centering).
+      // The fixed gap is applied between tokens (half before + half after).
+      const center = acc + gapWeight / 2 + w / 2;
+      acc += w + gapWeight;
+
+      const pct = (center / total) * 100;
+      return { token, startOffset: `${pct}%` };
+    });
+  }, [ringTokens]);
 
   return (
     <div
@@ -97,7 +129,7 @@ export function HeroVisual() {
           transformOrigin: "50% 50%",
           animationDuration: "140s",
           animationTimingFunction: "linear",
-          animationDirection: "alternate",
+          animationDirection: "reverse",
         }}
       >
         <circle
@@ -207,13 +239,25 @@ export function HeroVisual() {
         className="absolute h-[550px] w-[550px] animate-spin"
         style={{ animationDuration: "80s", animationTimingFunction: "linear", animationDirection: "alternate" }}
       >
-        <svg viewBox="0 0 550 550" className="w-full h-full">
-          <path id={curveId} d="M 275, 275 m -260, 0 a 260,260 0 1,1 520,0 a 260,260 0 1,1 -520,0" fill="none" />
-          <text className="text-[10px] uppercase tracking-[0.4em] fill-neutral-500 font-mono font-bold">
-            <textPath href={`#${curveId}`} startOffset="0%">
-              {ringText}
-            </textPath>
-          </text>
+        <svg viewBox="-40 -40 630 630" className="w-full h-full overflow-visible" style={{ overflow: "visible" }}>
+          <path
+            id={curveId}
+            // Start at top so offsets don't need wrapping (prevents truncation).
+            d="M 275 23 A 252 252 0 1 1 275 527 A 252 252 0 1 1 275 23"
+            fill="none"
+          />
+
+          {ringLayout.map(({ token, startOffset }, i) => (
+            <text
+              key={`${token}-${i}`}
+              textAnchor="middle"
+              className="text-[10px] uppercase tracking-[0.22em] fill-neutral-500 font-mono font-bold"
+            >
+              <textPath href={`#${curveId}`} startOffset={startOffset}>
+                {token}
+              </textPath>
+            </text>
+          ))}
         </svg>
       </div>
 
