@@ -14,7 +14,7 @@ export function Hero() {
       {/* Mobile hero visual (subtle, blurred, no cursor readout) */}
       <div className="absolute inset-0 z-0 overflow-hidden lg:hidden">
         <div 
-          className="absolute right-0 top-1/2 opacity-25 blur-[2px] md:scale-200"
+          className="absolute right-0 top-1/2 opacity-25 blur-[1px] scale-200"
           style={{ transform: 'translateY(-50%) translateX(-50%)' }}
         >
             <HeroVisual showCursorReadout={false} />
