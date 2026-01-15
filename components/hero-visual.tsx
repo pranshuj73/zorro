@@ -10,7 +10,7 @@ export function HeroVisual() {
   const [cursor, setCursor] = useState(() => ({ x: 0, y: 0 }));
   const reticleCycle = useMemo(() => {
     // Mechanical cycle (long holds, quick transitions):
-    // 1.0 hold 2.00s -> 0.4 hold 2.45s -> 0.8 hold 3.00s -> back to 1.0
+    // max hold 2.00s -> min hold 2.45s -> mid hold 3.00s -> back to max
     const hold1 = 2.0;
     const hold2 = 2.45;
     const hold3 = 3.0;
@@ -25,7 +25,10 @@ export function HeroVisual() {
     const t5 = (hold1 + ramp + hold2 + ramp + hold3) / total;
 
     const times = [0, t1, t2, t3, t4, t5, 1];
-    const scale = [1, 1, 0.4, 0.4, 0.8, 0.8, 1];
+    const maxScale = 1.08;
+    const minScale = 0.5;
+    const midScale = 0.84;
+    const scale = [maxScale, maxScale, minScale, minScale, midScale, midScale, maxScale];
     const opacity = [0.85, 0.85, 0.25, 0.25, 0.6, 0.6, 0.85];
 
     return { duration: total, times, scale, opacity };
@@ -70,20 +73,19 @@ export function HeroVisual() {
 
   const ringTokens = useMemo(
     () => [
-      "SPEED IS STRUCTURAL",
+      "STRUCTURAL SPEED",
       "//",
       "SYSTEMIZED EXECUTION",
       "//",
-      "REDUCE AMBIGUITY",
+      "CLARITY OVER AMBIGUITY",
       "//",
-      "TASTE-DRIVEN DECISIONS",
+      "TASTE AS AUTHORITY",
       "//",
-      "LEVERAGE",
+      "ENGINEERED LEVERAGE",
       "//",
     ],
     [],
   );
-
   const ringLayout = useMemo(() => {
     // Approximate token widths using monospace character counts.
     // We place tokens based on cumulative "weight" so the perceived gaps are consistent.
@@ -121,6 +123,86 @@ export function HeroVisual() {
         animate={{ opacity: [0.3, 0.5, 0.3] }}
         transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
       />
+
+      {/* ============================================================================
+          LAYER 1B/1C: Distant outer rings (very large, very spaced)
+         ============================================================================ */}
+      <svg
+        viewBox="0 0 1400 1400"
+        className="absolute h-[1400px] w-[1400px] opacity-35 text-neutral-400 animate-spin"
+        style={{
+          transformOrigin: "50% 50%",
+          animationDuration: "520s",
+          animationTimingFunction: "linear",
+          animationDirection: "reverse",
+          mixBlendMode: "screen",
+        }}
+      >
+        {/* Second-outermost distant ring: dotted */}
+        <circle
+          cx="700"
+          cy="700"
+          r="660"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeDasharray="1 18"
+          opacity="0.65"
+        />
+
+        {/* Closely-linked fragment ring (odd chunks, same rotation) */}
+        <circle
+          cx="700"
+          cy="700"
+          r="642"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.25"
+          strokeLinecap="round"
+          strokeDasharray="34 120 18 190 48 140 12 220"
+          strokeDashoffset="90"
+          opacity="0.52"
+        />
+        <circle
+          cx="700"
+          cy="700"
+          r="626"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1"
+          strokeLinecap="round"
+          strokeDasharray="16 160 10 240 26 180 8 300"
+          strokeDashoffset="210"
+          opacity="0.35"
+        />
+      </svg>
+
+      <svg
+        viewBox="0 0 1900 1900"
+        className="absolute h-[1900px] w-[1900px] opacity-25 text-neutral-500 animate-spin"
+        style={{
+          transformOrigin: "50% 50%",
+          animationDuration: "780s",
+          animationTimingFunction: "linear",
+          animationDirection: "normal",
+          mixBlendMode: "screen",
+        }}
+      >
+        <circle
+          cx="950"
+          cy="950"
+          r="880"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          // Even longer arcs at a different phase.
+          strokeDasharray="1320 2100"
+          strokeDashoffset="680"
+          opacity="0.55"
+          strokeLinecap="round"
+        />
+      </svg>
 
 
       {/* ============================================================================
@@ -307,7 +389,7 @@ export function HeroVisual() {
          ============================================================================ */}
       <div
         className="absolute h-[400px] w-[400px] animate-spin"
-        style={{ animationDuration: "70s", animationTimingFunction: "linear", animationDirection: "alternate" }}
+        style={{ animationDuration: "70s", animationTimingFunction: "linear", animationDirection: "alternate-reverse" }}
       >
         <svg viewBox="0 0 400 400" className="w-full h-full">
           <circle cx="200" cy="200" r="190" stroke="#ef4444" strokeWidth="1" strokeDasharray="100 250" strokeLinecap="round" fill="none" className="opacity-80 drop-shadow-[0_0_8px_rgba(239,68,68,0.6)]" />
@@ -330,7 +412,7 @@ export function HeroVisual() {
         {/* Aiming Reticle */}
         <motion.div
           className="absolute h-16 w-16 border border-red-500/50 rounded-full"
-          initial={{ scale: 1, opacity: 0.85 }}
+          initial={{ scale: 1.08, opacity: 0.85 }}
           animate={{
             scale: reticleCycle.scale,
             // Keep brightness pulsing independently of the mechanical scale holds.
